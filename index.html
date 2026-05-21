@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NExT Sudoku</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="app">
+    <div class="top-bar">
+      <button aria-label="leaderboard"><i class="ti ti-chart-bar" aria-hidden="true"></i></button>
+      <h1>N<span>E</span>xT Sudoku</h1>
+      <button aria-label="github"><i class="ti ti-brand-github" aria-hidden="true"></i></button>
+    </div>
+    <div class="diff-bar" id="diffBar">
+      <button data-d="easy" class="active">easy</button>
+      <button data-d="medium">medium</button>
+      <button data-d="hard">hard</button>
+      <button data-d="expert">expert</button>
+    </div>
+    <div class="stats-bar">
+      <div>
+        <div class="stat-label">Mistakes</div>
+        <div class="stat-val" id="mistakes">0 / 3</div>
+      </div>
+      <button class="eraser-btn" id="eraserBtn" title="Erase selected cell">
+        <i class="ti ti-eraser" aria-hidden="true"></i>
+      </button>
+      <div style="text-align:right">
+        <div class="stat-label">Time</div>
+        <div class="stat-val" id="timer">0:00</div>
+      </div>
+    </div>
+    <div class="grid-wrap">
+      <div class="sudoku-grid" id="grid"></div>
+    </div>
+    <div class="num-pad" id="numPad"></div>
+    <div class="controls">
+      <button class="ctrl-btn" id="newGameBtn">New game</button>
+      <button class="ctrl-btn" id="candidateBtn">Notes</button>
+      <button class="ctrl-btn" id="hintBtn">Hint</button>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

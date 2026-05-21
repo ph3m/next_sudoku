@@ -1,0 +1,126 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #000; }
+#app {
+  background: #0a0a0a;
+  min-height: 100vh;
+  color: #fff;
+  font-family: var(--font-sans, sans-serif);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px 8px 24px;
+}
+.top-bar {
+  width: 100%;
+  max-width: 560px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+.top-bar h1 { font-size: 20px; font-weight: 700; letter-spacing: 0.5px; }
+.top-bar h1 span { font-style: italic; }
+.top-bar button { background: none; border: none; color: #fff; cursor: pointer; font-size: 18px; padding: 4px; }
+.diff-bar {
+  display: flex; gap: 24px; margin-bottom: 10px;
+}
+.diff-bar button {
+  background: none; border: none; color: #4a9eff; cursor: pointer;
+  font-size: 13px; letter-spacing: 0.3px; padding: 2px 0;
+  opacity: 0.5; transition: opacity 0.15s;
+}
+.diff-bar button.active { opacity: 1; border-bottom: 2px solid #4a9eff; }
+.stats-bar {
+  width: 100%; max-width: 560px;
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 8px; padding: 0 4px;
+}
+.stat-label { font-size: 12px; color: #888; }
+.stat-val { font-size: 18px; font-weight: 700; color: #fff; }
+.eraser-btn {
+  background: none; border: none; color: #aaa; cursor: pointer;
+  font-size: 20px; padding: 4px 12px;
+  transition: color 0.15s;
+}
+.eraser-btn:hover { color: #fff; }
+.eraser-btn.active { color: #4a9eff; }
+.grid-wrap {
+  border: 2px solid #fff;
+  display: inline-block;
+  margin-bottom: 16px;
+}
+.sudoku-grid {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  width: min(504px, 95vw);
+}
+.cell {
+  aspect-ratio: 1;
+  display: flex; align-items: center; justify-content: center;
+  font-size: clamp(14px, 3.5vw, 22px);
+  font-weight: 400;
+  cursor: pointer;
+  border-right: 1px solid #333;
+  border-bottom: 1px solid #333;
+  position: relative;
+  transition: background 0.1s;
+  user-select: none;
+}
+.cell:nth-child(3n) { border-right: 2px solid #fff; }
+.cell:nth-child(9n) { border-right: none; }
+.cell[data-row="2"] { border-bottom: 2px solid #fff; }
+.cell[data-row="5"] { border-bottom: 2px solid #fff; }
+.cell[data-row="8"] { border-bottom: none; }
+.cell.given { color: #fff; font-weight: 700; }
+.cell.user-input { color: #4a9eff; }
+.cell.selected { background: #1a2a3a; }
+.cell.highlighted { background: #111a22; }
+.cell.same-num { background: #1a1a2a; }
+.cell.error { color: #ff4444; }
+.cell.correct-flash { color: #4dff88; }
+.candidates {
+  display: grid; grid-template-columns: repeat(3,1fr);
+  width: 100%; height: 100%; padding: 1px;
+  position: absolute; inset: 0;
+}
+.candidates span {
+  font-size: clamp(6px, 1.5vw, 9px);
+  color: #666; display: flex; align-items: center; justify-content: center;
+  line-height: 1;
+}
+.num-pad {
+  display: flex; gap: 8px; margin-bottom: 8px;
+}
+.num-btn {
+  width: clamp(36px, 9vw, 52px);
+  height: clamp(36px, 9vw, 52px);
+  background: none; border: none;
+  color: #4a9eff; font-size: clamp(16px, 4vw, 22px);
+  cursor: pointer; font-weight: 400;
+  border-radius: 4px;
+  transition: background 0.1s;
+}
+.num-btn:hover { background: #1a2a3a; }
+.num-btn.used { opacity: 0.25; }
+.controls {
+  display: flex; gap: 12px; margin-top: 8px;
+}
+.ctrl-btn {
+  background: #111; border: 1px solid #333; color: #aaa;
+  font-size: 12px; padding: 6px 16px; border-radius: 4px;
+  cursor: pointer; transition: background 0.1s, color 0.1s;
+}
+.ctrl-btn:hover { background: #1a1a1a; color: #fff; }
+.ctrl-btn.candidate-mode { color: #4a9eff; border-color: #4a9eff; }
+.win-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.85);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  z-index: 99; gap: 16px;
+}
+.win-overlay h2 { font-size: 32px; font-weight: 700; color: #4dff88; }
+.win-overlay p { color: #aaa; font-size: 16px; }
+.win-overlay button {
+  background: #4a9eff; border: none; color: #000;
+  font-size: 14px; font-weight: 700; padding: 10px 28px;
+  border-radius: 6px; cursor: pointer; margin-top: 8px;
+}
